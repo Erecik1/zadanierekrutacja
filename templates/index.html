@@ -1,0 +1,6 @@
+{% extends base.html %}
+
+{% block body %}
+ {% csrf_token %}
+{{ form.as_p }}
+{% endblock %}
