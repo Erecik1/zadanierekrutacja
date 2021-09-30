@@ -1,6 +1,56 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 
 {% block body %}
- {% csrf_token %}
-{{ form.as_p }}
+    <h1>Wyszukaj</h1>
+<form class="form" action="{% url 'index' %}">
+<div class="input-group mb-3">
+  Tytuł: <input type="text" class="form-control" placeholder="Tytuł" aria-label="Tytuł" name="title">
+</div>
+<div class="input-group mb-3">
+  Autor: <input type="text" class="form-control" placeholder="Autor" aria-label="Autor" name="author">
+</div>
+    <div class="input-group mb-3">
+  Język: <input type="text" class="form-control" placeholder="Język" aria-label="Język" name="language">
+</div>
+<div class="input-group mb-3">
+  Data od: <input type="date" class="form-control" name="start_date">
+</div>
+<div class="input-group mb-3">
+  Data do: <input type="date" class="form-control" name="end_date">
+</div>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtruj</button>
+</form>
+    <a class="btn btn-dark" href="{% url 'index' %}">Reset</a>
+<table class="table">
+  <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tytuł</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Data Publikacji</th>
+        <th scope="col">Numer ISBN</th>
+        <th scope="col">Liczba stron</th>
+        <th scope="col">Link do okładki</th>
+        <th scope="col">Język publikacji</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if books %}
+        {% for book in books %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.date_of_publication }}</td>
+    <td>{{ book.ISBN_number }}</td>
+    <td>{{ book.number_of_pages }}</td>
+    <td>{{ book.link_to_cover }}</td>
+    <td>{{ book.language }}</td>
+    </tr>
+
+        {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+
 {% endblock %}
