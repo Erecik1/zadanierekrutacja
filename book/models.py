@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Book(models.Model):
-    title = models.CharField(max_length=32)
-    author = models.CharField(max_length=64, null=True)
+    title = models.CharField(max_length=64, blank=False)
+    author = models.CharField(max_length=128, null=True)
     date_of_publication = models.DateField(null=True)
     ISBN_number = models.CharField(max_length=17, null=True)
     number_of_pages = models.IntegerField(blank=True, null=True)
