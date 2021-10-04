@@ -32,6 +32,7 @@
         <th scope="col">Liczba stron</th>
         <th scope="col">Link do okładki</th>
         <th scope="col">Język publikacji</th>
+        <th scope="col">Edycja</th>
     </tr>
   </thead>
   <tbody>
@@ -44,10 +45,10 @@
       <td>{{ book.date_of_publication }}</td>
     <td>{{ book.ISBN_number }}</td>
     <td>{{ book.number_of_pages }}</td>
-    <td>{{ book.link_to_cover }}</td>
+    <td><a href="{{ book.link_to_cover }}">link</a></td>
     <td>{{ book.language }}</td>
+        <td><a href="{% url 'edit' book.id %}">Edytuj</a></td>
     </tr>
-
         {% endfor %}
     {% endif %}
   </tbody>
